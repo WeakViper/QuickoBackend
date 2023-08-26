@@ -5,6 +5,7 @@ const UserSchema = new Schema({
         type: String,
         unique: true,
         required: [true, "Email is required"],
+        lowercase: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Invalid email address"]
     },
     firstName: {
@@ -28,7 +29,6 @@ const UserSchema = new Schema({
         type: String,
         required: [true, "Phone number is required"],
         unique: true,
-        match: [/^(\+1)?\d{10}$/, "Invalid phone number"]
     },
     addresses: [
         {
@@ -50,4 +50,4 @@ const UserSchema = new Schema({
 
 const User = models.User || model("User", UserSchema);
 
-export default User;
+module.exports = User;
