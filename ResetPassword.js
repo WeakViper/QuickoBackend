@@ -11,7 +11,7 @@ connectToDb((err) => {
     }
 });
 
-router.get('/reset-password/:id/:token', async (req, res, next) => {
+router.get('/reset-password-link/:id/:token', async (req, res, next) => {
     const { id, token } = req.params;
 
     try {
@@ -28,7 +28,7 @@ router.get('/reset-password/:id/:token', async (req, res, next) => {
                 return res.status(401).json({ message: 'Invalid token' });
             } else {
               let user = await db.collection('users').findOne({ email: decodedToken });
-              // reset password logic
+              
               next();
             }
           })
